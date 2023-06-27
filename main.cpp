@@ -52,6 +52,8 @@ int main(int argc, char *argv[])
 
     m_config->initializing();
 
+    m_log.makeFile(false);
+
     m_log.initializing();
 
     m_window->initializing();
