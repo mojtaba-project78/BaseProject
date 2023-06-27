@@ -2,90 +2,95 @@
 
 XObjectManagement m_object;
 
-//==============================================================================
-void XObjectManagement::setObject(QObject* m_object) {
-    this->m_obj = m_object;
-}
-
-//==============================================================================
-QObject *XObjectManagement::getObject() {
-    return this->m_obj;
-}
-
-//==============================================================================
-void XObjectManagement::checkObject()
+XObjectManagement::XObjectManagement(QObject *parent) : QObject(parent)
 {
-    if(m_obj == nullptr)
-        LOG_TRACE(QString("object of engine pointer is nullptr."));
 
-    return;
 }
 
 //==============================================================================
-void XObjectManagement::call(QString objectName, const char* functionName, QVariantMap map)
+void XObjectManagement::InitializingObject(QObject *m_object)
 {
-    checkObject();
-    QObject* myObject = getObject()->findChild<QObject*>(objectName);
-    if(!myObject) {
-        LOG_TRACE(QString("objectName: '%1' not found").arg(objectName));
+    this->m_object = m_object;
+}
+
+//==============================================================================
+QObject *XObjectManagement::get()
+{
+    return this->m_object;
+}
+
+//==============================================================================
+QVariant XObjectManagement::get(QString objectName, const char *propertyName)
+{
+    if(m_object->findChild<QObject*>(objectName) != nullptr){
+        LOG_TRACE(QString("objectName '%1' not found."));
+        return {};
+    }
+
+    return m_object->findChild<QObject*>(objectName)->property(propertyName);
+}
+
+//==============================================================================
+void XObjectManagement::set(QString objectName, const char *propertyName, QVariant m_value)
+{
+    if(m_object->findChild<QObject*>(objectName) != nullptr){
+        LOG_TRACE(QString("objectName '%1' not found."));
         return;
     }
 
-    if(map.isEmpty())
-        QMetaObject::invokeMethod(myObject, functionName);
-    else
-        QMetaObject::invokeMethod(myObject, functionName, Q_ARG(QVariant, QVariant::fromValue(map)));
+    m_object->findChild<QObject*>(objectName)->setProperty(propertyName, m_value);
 }
 
 //==============================================================================
-void XObjectManagement::singleCall(QString objectName, const char *functionName, QVariant map)
+void XObjectManagement::CallFunction(const char *functionName)
 {
-    checkObject();
-    QObject* myObject = getObject()->findChild<QObject*>(objectName);
-    if(!myObject) {
-        LOG_TRACE(QString("objectName: '%1' not found").arg(objectName));
-        return;
-    }
-    QMetaObject::invokeMethod(myObject, functionName, Q_ARG(QVariant, QVariant::fromValue(map)));
+    QMetaObject::invokeMethod(m_object, functionName);
 }
 
 //==============================================================================
-void XObjectManagement::call(const char *functionName, QVariantMap map)
+void XObjectManagement::CallFunction(const char *functionName, QVariantMap mapOfValues)
 {
-    checkObject();
-    if(map.isEmpty())
-        QMetaObject::invokeMethod(this->getObject(), functionName);
-    else
-        QMetaObject::invokeMethod(this->getObject(), functionName, Q_ARG(QVariant, QVariant::fromValue(map)));
+    QMetaObject::invokeMethod(m_object, functionName, Q_ARG(QVariant, QVariant::fromValue(mapOfValues)));
 }
 
 //==============================================================================
-void XObjectManagement::singleCall(const char *functionName, QVariant map)
+void XObjectManagement::CallFunctionSingle(const char *functionName, QVariant value)
 {
-     QMetaObject::invokeMethod(getObject(), functionName, Q_ARG(QVariant, QVariant::fromValue(map)));
+    QMetaObject::invokeMethod(m_object, functionName, Q_ARG(QVariant, QVariant::fromValue(value)));
 }
 
 //==============================================================================
-void XObjectManagement::set(QString objectName, const char* propertyName, QVariant value)
+void XObjectManagement::CallFunction(QString objectName, const char *functionName)
 {
-    checkObject();
-    QObject* myObject = this->m_obj->findChild<QObject*>(objectName);
-    if(!myObject) {
-        LOG_TRACE(QString("objectName: '%1' not found").arg(objectName));
+    if(m_object->findChild<QObject*>(objectName) == nullptr) {
+        LOG_TRACE(QString("objectName '%1' not found."));
         return;
     }
 
-    myObject->setProperty(propertyName, value);
+    QObject* myObject = m_object->findChild<QObject*>(objectName);
+    QMetaObject::invokeMethod(myObject, functionName);
 }
 
 //==============================================================================
-QVariant XObjectManagement::get(QString objectName, const char* propertyName)
+void XObjectManagement::CallFunction(QString objectName, const char *functionName, QVariantMap mapOfValues)
 {
-    checkObject();
-    QObject* myObject = this->m_obj->findChild<QObject*>(objectName);
-    if(!myObject) {
-        LOG_TRACE(QString("objectName: '%1' not found").arg(objectName));
-        return NULL;
+    if(m_object->findChild<QObject*>(objectName) == nullptr) {
+        LOG_TRACE(QString("objectName '%1' not found."));
+        return;
     }
-    return myObject->property(propertyName);
+
+    QObject* myObject = m_object->findChild<QObject*>(objectName);
+    QMetaObject::invokeMethod(myObject, functionName, Q_ARG(QVariant, QVariant::fromValue(mapOfValues)));
+}
+
+//==============================================================================
+void XObjectManagement::CallFunctionSingle(QString objectName, const char *functionName, QVariant value)
+{
+    if(m_object->findChild<QObject*>(objectName) == nullptr) {
+        LOG_TRACE(QString("objectName '%1' not found."));
+        return;
+    }
+
+    QObject* myObject = m_object->findChild<QObject*>(objectName);
+    QMetaObject::invokeMethod(myObject, functionName, Q_ARG(QVariant, QVariant::fromValue(value)));
 }
