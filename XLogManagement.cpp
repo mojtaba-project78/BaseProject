@@ -2,31 +2,44 @@
 
 XLogManagement m_log;
 
+//==============================================================================
 XLogManagement::XLogManagement()
-{
-    m_folderName = "MyConfigurations";
-    m_file.setFileName(QString("%1//%2").arg(m_folderName).arg("Log.txt"));
-}
+{}
 
+//==============================================================================
 XLogManagement::~XLogManagement()
 {
     if(m_file.isOpen())
         m_file.close();
 }
 
+//==============================================================================
 void XLogManagement::initializing()
 {
     LOG_TRACE("initializing...");
 
+    if(m_make_file) {
+        m_folderName = "MyConfigurations";
+        m_file.setFileName(QString("%1//%2").arg(m_folderName).arg("Log.txt"));
+    }
+
     m_file.close();
 }
 
+//==============================================================================
+void XLogManagement::makeFile(bool m_status)
+{
+    m_make_file = m_status;
+}
+
+//==============================================================================
 void XLogManagement::addText(QString m_macro_file, QString m_macro_function, int m_macro_line, QString m_text)
 {
-    if(!m_file.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)) {
-        qDebug() << "cant open file: " << m_file.fileName();
-        return;
-    }
+    if(m_make_file)
+        if(!m_file.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)) {
+            qDebug() << "cant open file: " << m_file.fileName();
+            return;
+        }
 
     //FIXME: here we should check debug mode is enable or no
     //if(m_config->get("DEBUGGING/m_debugging").toBool() == false) {
@@ -46,7 +59,10 @@ void XLogManagement::addText(QString m_macro_file, QString m_macro_function, int
     qDebug() <<	m_data;
 
     m_data.append("\n");
-    m_file.write(m_data.toUtf8());
-    m_file.close();
+
+    if(m_make_file) {
+        m_file.write(m_data.toUtf8());
+        m_file.close();
+    }
 }
 
