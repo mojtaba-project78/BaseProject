@@ -18,11 +18,13 @@ public:
 
 public:
     void initializing();
+    void makeFile(bool m_status);
     void addText(QString m_macto_file, QString m_macro_function, int m_macro_line, QString m_text = "");
 
 private:
     QFile m_file;
     QString m_folderName;
+    bool m_make_file;
 };
 
 extern XLogManagement m_log;
