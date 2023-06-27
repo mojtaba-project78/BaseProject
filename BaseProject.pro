@@ -37,6 +37,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     XApp.h \
     XAppConfiguration.h \
+    XData.h \
     XLogManagement.h \
     XObjectManagement.h \
     XWindowsManagement.h
