@@ -1,31 +1,33 @@
 #ifndef XOBJECTMANAGEMENT_H
 #define XOBJECTMANAGEMENT_H
 
-#include <QQuickView>
-#include <QQuickItem>
-#include <QString>
 #include <QObject>
 #include <QVariant>
+#include <QVariantMap>
 
-#include "XLogManagement.h"
+#include "XlogManagement.h"
 
-class XObjectManagement
+class XObjectManagement : public QObject
 {
+    Q_OBJECT
 public:
-    void setObject(QObject* m_object);
-    QObject *getObject();
-    void checkObject();
+    explicit XObjectManagement(QObject *parent = nullptr);
 
-    void call(QString objectName, const char* functionName, QVariantMap map = {});
-    void singleCall(QString objectName, const char* functionName, QVariant map);
-    void call(const char* functionName, QVariantMap map = {});
-    void singleCall(const char* functionName, QVariant map);
+    void InitializingObject(QObject* m_object);
 
-    void set(QString objectName, const char* propertyName, QVariant value);
+    QObject* get();
     QVariant get(QString objectName, const char* propertyName);
+    void set(QString objectName, const char* propertyName, QVariant m_value);
+
+    void CallFunction(const char* functionName);
+    void CallFunction(const char* functionName, QVariantMap mapOfValues);
+    void CallFunctionSingle(const char* functionName, QVariant value);
+    void CallFunction(QString objectName, const char* functionName);
+    void CallFunction(QString objectName, const char* functionName, QVariantMap mapOfValues);
+    void CallFunctionSingle(QString objectName, const char* functionName, QVariant value);
 
 private:
-    QObject *m_obj;
+    QObject* m_object;
 };
 
 extern XObjectManagement m_object;
