@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
             Q_UNUSED(scriptEngine)
             return m_app.get();
         });
-        LOG_TRACE(QString("Datatype { %1 } Successfully Registered.").arg("XApp"));
+        LOG(QString("Datatype { %1 } Successfully Registered.").arg("XApp"));
 
         //==============================================================================
         qmlRegisterSingletonType<XWindowManagement>("XWindowManagement.uri", 1, 0, "XWindowManagement", [&](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
             Q_UNUSED(scriptEngine)
             return m_window.get();
         });
-        LOG_TRACE(QString("Datatype { %1 } Successfully Registered.").arg("XWindowManagement"));
+        LOG(QString("Datatype { %1 } Successfully Registered.").arg("XWindowManagement"));
 
         //==============================================================================
         qmlRegisterSingletonType<XAppConfiguration>("XAppConfiguration.uri", 1, 0, "Api_config", [&](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
             Q_UNUSED(scriptEngine)
             return m_config.get();
         });
-        LOG_TRACE(QString("Datatype { %1 } Successfully Registered.").arg("XAppConfiguration"));
+        LOG(QString("Datatype { %1 } Successfully Registered.").arg("XAppConfiguration"));
 
         //==============================================================================
     }
@@ -48,7 +48,13 @@ int main(int argc, char *argv[])
     }, Qt::QueuedConnection);
     engine.load(url);
 
-    m_object.setObject(engine.rootObjects().first());
+    m_object.InitializingObject(engine.rootObjects().first());
+
+    m_file.initializing();
+
+    m_sql.makeFile(false);
+
+    m_sql.initializing();
 
     m_config->initializing();
 

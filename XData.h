@@ -3,6 +3,9 @@
 
 #include <QString>
 #include <functional>
+#include <QSql>
+#include <QSqlDatabase>
+#include <QSqlQuery>
 
 #include "XLogManagement.h"
 #include "XObjectManagement.h"
@@ -12,6 +15,8 @@ namespace XData
 #define VS(x) static inline QString x = #x
 #define VC(x) static inline const char* x = #x
 #define ClassName(value) static inline QString className = value
+
+    static QSqlDatabase db;
 
     struct Forms
     {

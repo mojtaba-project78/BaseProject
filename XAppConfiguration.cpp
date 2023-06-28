@@ -10,10 +10,10 @@ XAppConfiguration::XAppConfiguration(QObject *parent) : QObject(parent)
 
 void XAppConfiguration::initializing()
 {
-    LOG_TRACE("initializing...");
+    LOG("initializing...");
 
     if(!QFile::exists(QString("%1//%2").arg(m_folderName).arg("Configuration.ini"))) {
-        LOG_TRACE(QString("file not found: %1").arg(QString("%1//%2").arg(m_folderName).arg("Configuration.ini")));
+        LOG(QString("file not found: %1").arg(QString("%1//%2").arg(m_folderName).arg("Configuration.ini")));
 
         //==============================================================================
         // creating data types
@@ -39,7 +39,7 @@ QVariant XAppConfiguration::get(QString m_key)
 //==============================================================================
 void XAppConfiguration::update(QString m_key, QVariant m_value)
 {
-    LOG_TRACE(QString("Config Application Changed"));
+    LOG(QString("Config Application Changed"));
     QSettings m_config(QString("%1//%2").arg(m_folderName).arg("Configuration.ini"), QSettings::Format::IniFormat);
     m_config.setValue(m_key, m_value);
 }

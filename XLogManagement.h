@@ -29,6 +29,6 @@ private:
 
 extern XLogManagement m_log;
 
-#define LOG_TRACE(x) m_log.addText(__FILE__, __FUNCTION__, __LINE__, x)
+#define LOG(x) m_log.addText(__FILE__, __FUNCTION__, __LINE__, x)
 
 #endif // XLOGMANAGEMENT_H

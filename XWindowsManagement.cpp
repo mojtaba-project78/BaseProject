@@ -8,8 +8,8 @@ XWindowManagement::XWindowManagement(QObject *parent) : QObject(parent)
 //==============================================================================
 void XWindowManagement::initializing()
 {
-    LOG_TRACE("initializing...");
-    m_object.call("windowInitializing");
+    LOG("initializing...");
+    m_object.CallFunction("windowInitializing");
 }
 
 //==============================================================================
@@ -22,7 +22,7 @@ void XWindowManagement::setWindowActive(int m_windowId)
 void XWindowManagement::moveWindow(int m_windowId)
 {
     m_active_window = m_windowId;
-    m_object.singleCall("showWindow", m_windowId);
+    m_object.CallFunctionSingle("showWindow", m_windowId);
 }
 
 //==============================================================================
@@ -35,30 +35,30 @@ int XWindowManagement::getWindowActiveByIndex()
 void XWindowManagement::openPage(QString m_objectName)
 {
     m_active_page = m_objectName;
-    m_object.call(m_objectName, "open");
+    m_object.CallFunction(m_objectName, "open");
 }
 
 //==============================================================================
 void XWindowManagement::openPage(QString m_objectName, QString functionName)
 {
     m_active_page = m_objectName;
-    m_object.call(m_objectName, functionName.toStdString().c_str());
-    m_object.call(m_objectName, "open");
+    m_object.CallFunction(m_objectName, functionName.toStdString().c_str());
+    m_object.CallFunction(m_objectName, "open");
 }
 
 //==============================================================================
 void XWindowManagement::openPage(QString m_objectName, QString functionName, QVariantMap map)
 {
     m_active_page = m_objectName;
-    m_object.call(m_objectName, functionName.toStdString().c_str(), map);
-    m_object.call(m_objectName, "open");
+    m_object.CallFunction(m_objectName, functionName.toStdString().c_str(), map);
+    m_object.CallFunction(m_objectName, "open");
 }
 
 //==============================================================================
 void XWindowManagement::closePage(QString m_objectName)
 {
     m_active_page = "";
-    m_object.call(m_objectName, "close");
+    m_object.CallFunction(m_objectName, "close");
 }
 
 //==============================================================================

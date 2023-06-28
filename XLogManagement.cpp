@@ -16,7 +16,7 @@ XLogManagement::~XLogManagement()
 //==============================================================================
 void XLogManagement::initializing()
 {
-    LOG_TRACE("initializing...");
+    LOG("initializing...");
 
     if(m_make_file) {
         m_folderName = "MyConfigurations";

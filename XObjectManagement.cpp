@@ -23,7 +23,7 @@ QObject *XObjectManagement::get()
 QVariant XObjectManagement::get(QString objectName, const char *propertyName)
 {
     if(m_object->findChild<QObject*>(objectName) != nullptr){
-        LOG_TRACE(QString("objectName '%1' not found."));
+        LOG(QString("objectName '%1' not found."));
         return {};
     }
 
@@ -34,7 +34,7 @@ QVariant XObjectManagement::get(QString objectName, const char *propertyName)
 void XObjectManagement::set(QString objectName, const char *propertyName, QVariant m_value)
 {
     if(m_object->findChild<QObject*>(objectName) != nullptr){
-        LOG_TRACE(QString("objectName '%1' not found."));
+        LOG(QString("objectName '%1' not found."));
         return;
     }
 
@@ -63,7 +63,7 @@ void XObjectManagement::CallFunctionSingle(const char *functionName, QVariant va
 void XObjectManagement::CallFunction(QString objectName, const char *functionName)
 {
     if(m_object->findChild<QObject*>(objectName) == nullptr) {
-        LOG_TRACE(QString("objectName '%1' not found."));
+        LOG(QString("objectName '%1' not found."));
         return;
     }
 
@@ -75,7 +75,7 @@ void XObjectManagement::CallFunction(QString objectName, const char *functionNam
 void XObjectManagement::CallFunction(QString objectName, const char *functionName, QVariantMap mapOfValues)
 {
     if(m_object->findChild<QObject*>(objectName) == nullptr) {
-        LOG_TRACE(QString("objectName '%1' not found."));
+        LOG(QString("objectName '%1' not found."));
         return;
     }
 
@@ -87,7 +87,7 @@ void XObjectManagement::CallFunction(QString objectName, const char *functionNam
 void XObjectManagement::CallFunctionSingle(QString objectName, const char *functionName, QVariant value)
 {
     if(m_object->findChild<QObject*>(objectName) == nullptr) {
-        LOG_TRACE(QString("objectName '%1' not found."));
+        LOG(QString("objectName '%1' not found."));
         return;
     }
 

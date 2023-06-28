@@ -9,6 +9,8 @@
 #include "XAppConfiguration.h"
 #include "XLogManagement.h"
 #include "XObjectManagement.h"
+#include "XFileManagement.h"
+#include "XSQLManagement.h"
 
 class XApp : public QObject
 {

@@ -1,4 +1,4 @@
-QT += quick
+QT += quick sql
 
 CONFIG += c++11
 
@@ -16,8 +16,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         XApp.cpp \
         XAppConfiguration.cpp \
+        XFileManagement.cpp \
         XLogManagement.cpp \
         XObjectManagement.cpp \
+        XSQLManagement.cpp \
         XWindowsManagement.cpp \
         main.cpp
 
@@ -38,6 +40,8 @@ HEADERS += \
     XApp.h \
     XAppConfiguration.h \
     XData.h \
+    XFileManagement.h \
     XLogManagement.h \
     XObjectManagement.h \
+    XSQLManagement.h \
     XWindowsManagement.h
