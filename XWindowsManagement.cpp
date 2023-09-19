@@ -6,20 +6,13 @@ XWindowManagement::XWindowManagement(QObject *parent) : QObject(parent)
 {}
 
 //==============================================================================
-void XWindowManagement::initializing()
-{
-    LOG("initializing...");
-    m_object.CallFunction("windowInitializing");
-}
-
-//==============================================================================
 void XWindowManagement::setWindowActive(int m_windowId)
 {
     m_active_window = m_windowId;
 }
 
 //==============================================================================
-void XWindowManagement::moveWindow(int m_windowId)
+void XWindowManagement::openWindow(int m_windowId)
 {
     m_active_window = m_windowId;
     m_object.CallFunctionSingle("showWindow", m_windowId);
