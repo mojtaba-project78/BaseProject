@@ -16,6 +16,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         XApp.cpp \
         XAppConfiguration.cpp \
+        XCalenderManagement.cpp \
         XFileManagement.cpp \
         XLogManagement.cpp \
         XObjectManagement.cpp \
@@ -39,6 +40,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     XApp.h \
     XAppConfiguration.h \
+    XCalenderManagement.h \
     XData.h \
     XFileManagement.h \
     XLogManagement.h \
