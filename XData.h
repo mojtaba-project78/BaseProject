@@ -18,11 +18,20 @@ namespace XData
 
     static QSqlDatabase db;
 
+	struct Windows
+	{
+		enum
+		{
+			WN_STARTUP,
+			WN_LOADING,
+			WN_APP
+		};
+	};
+
     struct Forms
     {
         enum
-        {
-            FORM_LOADING
+		{
         };
     };
 
