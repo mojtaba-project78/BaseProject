@@ -39,7 +39,7 @@ QVariant XAppConfiguration::get(QString m_key)
 //==============================================================================
 void XAppConfiguration::update(QString m_key, QVariant m_value)
 {
-    LOG(QString("Config Application Changed"));
+	LOG(QString("Config Updated from (%1: %2) to (%3: %4)").arg(m_key).arg(get(m_key).toString()).arg(m_key).arg(m_value.toString()));
     QSettings m_config(QString("%1//%2").arg(m_folderName).arg("Configuration.ini"), QSettings::Format::IniFormat);
     m_config.setValue(m_key, m_value);
 }
