@@ -16,32 +16,15 @@ class XWindowManagement : public QObject
 public:
     explicit XWindowManagement(QObject *parent = nullptr);
 
-    Q_INVOKABLE
-    void initializing();
-
-    Q_INVOKABLE
-    void setWindowActive(int m_windowId);
-
-    Q_INVOKABLE
-    void moveWindow(int m_windowId);
-
-    Q_INVOKABLE
-    int getWindowActiveByIndex();
-
-    Q_INVOKABLE
-    void openPage(QString m_objectName);
-
-    Q_INVOKABLE
-    void openPage(QString m_objectName, QString functionName);
-
-    Q_INVOKABLE
-    void openPage(QString m_objectName, QString functionName, QVariantMap map);
-
-    Q_INVOKABLE
-    void closePage(QString objectName);
-
-    Q_INVOKABLE
-    QString getActivePage();
+public slots:
+	void setWindowActive(int m_windowId);
+	void openWindow(int m_windowId);
+	void openPage(QString m_objectName);
+	void openPage(QString m_objectName, QString functionName);
+	void openPage(QString m_objectName, QString functionName, QVariantMap map);
+	void closePage(QString objectName);
+	int getWindowActiveByIndex();
+	QString getActivePage();
 
 private:
     int m_active_window;
