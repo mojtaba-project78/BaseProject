@@ -5,6 +5,7 @@
 
 #include <memory>
 
+#include "XCalenderManagement.h"
 #include "XWindowsManagement.h"
 #include "XAppConfiguration.h"
 #include "XLogManagement.h"
