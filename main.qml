@@ -3,10 +3,10 @@ import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 
-//import "./Components"
-import "./Windows"
-//import "./Forms"
-//import "./Pages"
+//import "./QML/Components"
+import "./QML/Windows"
+//import "./QML/Forms"
+//import "./QML/Pages"
 
 Page {
     visible: true
