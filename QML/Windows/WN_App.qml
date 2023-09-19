@@ -14,7 +14,7 @@ ApplicationWindow {
 
         Label {
             anchors.centerIn: parent
-            text: "Page <b>%1</b?".arg("Loading")
+            text: "Page <b>%1</b?".arg("App")
             font.pixelSize: 12
         }
     }

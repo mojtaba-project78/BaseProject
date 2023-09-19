@@ -22,8 +22,8 @@ namespace XData
 	{
 		enum
 		{
-			WN_STARTUP,
 			WN_LOADING,
+			WN_STARTUP,
 			WN_APP
 		};
 	};
