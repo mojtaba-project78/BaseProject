@@ -47,8 +47,4 @@ Page {
             break;
         }
     }
-
-    Component.onCompleted: {
-        showWindow(0)
-    }
 }
