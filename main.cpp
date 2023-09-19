@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
 
     m_log.initializing();
 
-    m_window->initializing();
+	m_window->openWindow(XData::Windows::WN_STARTUP);
 
     int r = app.exec();
     //==============================================================================
