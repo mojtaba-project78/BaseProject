@@ -7,6 +7,7 @@
 
 #include "XCalenderManagement.h"
 #include "XWindowsManagement.h"
+#include "XNetworkManagement.h"
 #include "XAppConfiguration.h"
 #include "XLogManagement.h"
 #include "XObjectManagement.h"

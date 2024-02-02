@@ -1,4 +1,4 @@
-QT += quick sql
+QT += quick sql network
 
 CONFIG += c++11
 
@@ -19,6 +19,7 @@ SOURCES += \
         XCalenderManagement.cpp \
         XFileManagement.cpp \
         XLogManagement.cpp \
+        XNetworkManagement.cpp \
         XObjectManagement.cpp \
         XSQLManagement.cpp \
         XWindowsManagement.cpp \
@@ -44,6 +45,7 @@ HEADERS += \
     XData.h \
     XFileManagement.h \
     XLogManagement.h \
+    XNetworkManagement.h \
     XObjectManagement.h \
     XSQLManagement.h \
     XWindowsManagement.h
