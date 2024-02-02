@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 
     {
         //==============================================================================
-        qmlRegisterSingletonType<XApp>("XApp.uri", 1, 0, "XApp", [&](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
+		qmlRegisterSingletonType<XApp>("XApp.uri", 1, 0, "Api_app", [&](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
             Q_UNUSED(engine)
             Q_UNUSED(scriptEngine)
             return m_app.get();
@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
         LOG(QString("Datatype { %1 } Successfully Registered.").arg("XApp"));
 
         //==============================================================================
-        qmlRegisterSingletonType<XWindowManagement>("XWindowManagement.uri", 1, 0, "XWindowManagement", [&](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
+		qmlRegisterSingletonType<XWindowManagement>("XWindowManagement.uri", 1, 0, "Api_windows", [&](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
             Q_UNUSED(engine)
             Q_UNUSED(scriptEngine)
             return m_window.get();
@@ -53,13 +53,11 @@ int main(int argc, char *argv[])
     m_file.initializing();
 
     m_sql.makeFile(false);
-
     m_sql.initializing();
 
     m_config->initializing();
 
     m_log.makeFile(false);
-
     m_log.initializing();
 
 	m_window->openWindow(XData::Windows::WN_STARTUP);

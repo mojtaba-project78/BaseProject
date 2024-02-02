@@ -3,10 +3,7 @@ import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 
-//import "./QML/Components"
 import "./QML/Windows"
-//import "./QML/Forms"
-//import "./QML/Pages"
 
 Page {
     visible: true
@@ -24,27 +21,18 @@ Page {
         visible: false
     }
 
-    function showWindow(index)
+    property var wins: [
+        id_wn_loading,  // 0
+        id_wn_startup,  // 1
+        id_wn_app       // 2
+    ]
+
+    function showWindow(WinId)
     {
-        switch(index)
-        {
-        case 0:
-            id_wn_loading.show()
-            id_wn_startup.hide()
-            id_wn_app.hide()
-            break;
-
-        case 1:
-            id_wn_loading.hide()
-            id_wn_startup.show()
-            id_wn_app.hide()
-            break;
-
-        case 2:
-            id_wn_loading.hide()
-            id_wn_startup.hide()
-            id_wn_app.show()
-            break;
-        }
+        for(var index = 0; index < wins.length; index++)
+            if(index === WinId)
+                wins[index].show()
+            else
+                wins[index].hide()
     }
 }

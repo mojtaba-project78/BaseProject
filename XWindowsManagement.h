@@ -17,18 +17,16 @@ public:
     explicit XWindowManagement(QObject *parent = nullptr);
 
 public slots:
-	void setWindowActive(int m_windowId);
 	void openWindow(int m_windowId);
+	void openWindow(int m_windowId, const char* functionName);
+	void openWindow(int m_windowId, const char* functionName, QVariant value);
+	void openWindow(int m_windowId, const char* functionName, QVariantMap mapOfValue);
+
 	void openPage(QString m_objectName);
 	void openPage(QString m_objectName, QString functionName);
 	void openPage(QString m_objectName, QString functionName, QVariantMap map);
 	void closePage(QString objectName);
-	int getWindowActiveByIndex();
-	QString getActivePage();
 
-private:
-    int m_active_window;
-    QString m_active_page;
 };
 
 extern std::unique_ptr<XWindowManagement> m_window;

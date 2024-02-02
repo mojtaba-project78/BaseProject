@@ -5,7 +5,7 @@
 #include <QVariant>
 #include <QVariantMap>
 
-#include "XlogManagement.h"
+#include "XLogManagement.h"
 
 class XObjectManagement : public QObject
 {
